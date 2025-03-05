@@ -28,7 +28,12 @@ public class ResponseDto {
     }
 
     public static ResponseEntity<ResponseDto> duplicatedTelNumber() {
-        ResponseDto responseBody = new ResponseDto("DI", "Duplicated Tel number.");
+        ResponseDto responseBody = new ResponseDto("DT", "Duplicated Tel Number.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+    }
+
+    public static ResponseEntity<ResponseDto> noExistUser() {
+        ResponseDto responseBody = new ResponseDto("NU", "No ExistUser.");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
 }
