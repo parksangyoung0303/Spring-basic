@@ -1,4 +1,4 @@
-package com.korit.spring_basic.Controller;
+package com.korit.spring_basic.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.korit.spring_basic.dto.Validation;
+
+import jakarta.validation.Valid;
 
 @RestController
 // http://127.0.0.1:8080/request-data/**
@@ -19,8 +23,8 @@ public class RequestDataController {
     // GET http://127.0.0.1:8080/request-data/request-param
     @GetMapping("/request-param")
     public String requestParam(
-        @RequestParam(required = false) String name,
-        @RequestParam(required = false) Integer age) {
+        @RequestParam(name="name", required= false) String name,
+        @RequestParam(name="age", required=false) Integer age) {
         return "이름 : " + name + "나이 : " + age;
     }
 
@@ -48,6 +52,12 @@ public class RequestDataController {
     public String requestBody(@RequestBody() RequestBodyDTO requestBody) {
         return "이름 : " + requestBody.getName() + " 나이 : " + requestBody.getAge() ;
     }
+
+    // Validation 유효성 검사
+    @PostMapping("/Validation")
+    public String validation(@RequestBody @Valid Validation requestBody) {
+        return requestBody.toString();
+    }
 }
 
 // DTO (Data Transfer Object): 데이터를 서로 다른 계층간에 전송하기 위한 객체
@@ -58,7 +68,7 @@ class RequestBodyDTO {
 
     public RequestBodyDTO(String name, Integer age) {
         this.name = name;
-        this.age =age;
+        this.age = age;
     }
     public String getName() {
         return this.name;
