@@ -1,5 +1,6 @@
 package com.korit.spring_basic.entity;
 
+import com.korit.spring_basic.dto.PatchUserRequestDto;
 import com.korit.spring_basic.dto.PostUserRequestDto;
 
 import jakarta.persistence.Entity;
@@ -35,5 +36,10 @@ public class UserEntity {
         this.userName = dto.getUserName();
         this.userAddress = dto.getUserAddress();
         this.userTelNumber = dto.getUserTelNumber();
+    }
+
+    public void patch(PatchUserRequestDto dto) {
+        this.userName = dto.getUserName();
+        this.userAddress = dto.getUserAddress();
     }
 }
