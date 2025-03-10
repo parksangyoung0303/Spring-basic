@@ -2,6 +2,7 @@ package com.korit.spring_basic.entity;
 
 import com.korit.spring_basic.dto.PatchUserRequestDto;
 import com.korit.spring_basic.dto.PostUserRequestDto;
+import com.korit.spring_basic.dto.SignUpRequestDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -22,24 +23,31 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class UserEntity {
-    
-    @Id
-    private String userId;
-    private String userPassword;
-    private String userName;
-    private String userAddress;
-    private String userTelNumber;
+  @Id
+  private String userId;
+  private String userPassword;
+  private String userName;
+  private String userAddress;
+  private String userTelNumber;
 
-    public UserEntity(PostUserRequestDto dto) {
-        this.userId = dto.getUserId();
-        this.userPassword = dto.getUserPassword();
-        this.userName = dto.getUserName();
-        this.userAddress = dto.getUserAddress();
-        this.userTelNumber = dto.getUserTelNumber();
-    }
+  public UserEntity(PostUserRequestDto dto) {
+    this.userId = dto.getUserId();
+    this.userPassword = dto.getUserPassword();
+    this.userName = dto.getUserName();
+    this.userAddress = dto.getUserAddress();
+    this.userTelNumber = dto.getUserTelNumber();
+  }
 
-    public void patch(PatchUserRequestDto dto) {
-        this.userName = dto.getUserName();
-        this.userAddress = dto.getUserAddress();
-    }
+  public UserEntity(SignUpRequestDto dto) {
+    this.userId = dto.getUserId();
+    this.userPassword = dto.getUserPassword();
+    this.userName = dto.getUserName();
+    this.userAddress = dto.getUserAddress();
+    this.userTelNumber = dto.getUserTelNumber();
+  }
+
+  public void patch(PatchUserRequestDto dto) {
+    this.userName = dto.getUserName();
+    this.userAddress = dto.getUserAddress();
+  }
 }
